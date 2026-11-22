@@ -1,0 +1,22 @@
+# 开发用 PostgreSQL 18（仅本地开发；生产连接串走密钥系统）
+# pg18 官方镜像约定：挂载父目录，数据实际落在 /var/lib/postgresql/18/docker
+services:
+  postgres:
+    image: postgres:18
+    container_name: node-scaffold-postgres-dev
+    environment:
+      POSTGRES_DB: node_scaffold
+      POSTGRES_USER: node_scaffold
+      POSTGRES_PASSWORD: node_scaffold_dev
+    ports:
+      - '5433:5432' # 避让共享栈 env-postgres(5432)
+    volumes:
+      - node_scaffold_pg_dev:/var/lib/postgresql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U node_scaffold -d node_scaffold']
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  node_scaffold_pg_dev:

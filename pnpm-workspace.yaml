@@ -1,0 +1,14 @@
+# 传递依赖安全修复（2026-11-21 审计）。升级后以全量门禁 + 冒烟验收。
+overrides:
+  deepmerge-ts: ^8.0.0 # GHSA-ggr8-5vv4-36mx（<8.0.0）
+  glob: ^14.0.2 # GHSA-3g3m-2fjr-6pw4（<=14.0.1）
+  minimatch: ^11.0.1 # GHSA-g3hv-75wg-m249（<11.0.1）
+  effect: ^3.22.1 # GHSA-7589-6fvf-x4pw（<=3.22.0，@prisma/config 传递）
+
+# pnpm ≥10 默认拦截依赖构建脚本；以下依赖需要 postinstall（Prisma 引擎生成、swc/esbuild 原生绑定）
+allowBuilds:
+  '@prisma/client': true
+  '@prisma/engines': true
+  '@swc/core': true
+  esbuild: true
+  prisma: true
