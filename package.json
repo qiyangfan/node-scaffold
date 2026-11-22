@@ -54,7 +54,7 @@
     "@swc/core": "^1.16.22",
     "@types/express": "^5.0.3",
     "@types/node": "^24.10.1",
-    "@types/supertest": "^6.0.3",
+    "@types/supertest": "^7.2.1",
     "@vitest/coverage-v8": "^4.1.12",
     "dependency-cruiser": "^18.8.0",
     "eslint": "^9.39.0",
